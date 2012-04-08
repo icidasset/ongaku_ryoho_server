@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/ongaku_ryoho_server.rb'
+
+OngakuRyohoServer.run
