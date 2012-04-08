@@ -5,7 +5,7 @@ module OngakuRyohoServer
   #
   # { Class methods }
 
-  def self.run
-    OngakuRyohoServer::Application.run!
+  def self.run(options)
+    OngakuRyohoServer::Application.run!(options)
   end
 end
