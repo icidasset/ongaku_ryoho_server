@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["icid.asset@gmail.com"]
   gem.description   = %q{Serves music to Ongaku Ryoho clients}
   gem.summary       = %q{Serves music to Ongaku Ryoho clients}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/icidasset/ongaku_ryoho_server"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
