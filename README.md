@@ -1,29 +1,34 @@
-# OngakuRyohoServer
+# Ongaku Ryoho Server
 
-TODO: Write a gem description
+A little Sinatra web server wrapped in a gem specifically for the [Ongaku Ryoho client](https://github.com/icidasset/ongaku_ryoho).
 
-## Installation
+## How to use
 
-Add this line to your application's Gemfile:
+### Requirements
 
-    gem 'ongaku_ryoho_server'
+`Ruby 1.9.2`
 
-And then execute:
+### Installation
 
-    $ bundle
+```bash
+gem install ongaku_ryoho_server
+```
 
-Or install it yourself as:
+### Usage
 
-    $ gem install ongaku_ryoho_server
+Go to a music directory and run the web server.
 
-## Usage
+```bash
+cd ~/Music
+(rvmsudo) ongaku_ryoho_server (-p 80)
+```
 
-TODO: Write usage instructions here
+### Options
 
-## Contributing
+Some Sinatra options, that is.
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```
+-p port    set the port (default is 4567)
+-o addr    set the host (default is 0.0.0.0)
+-x         turn on the mutex lock (default is off)
+```
