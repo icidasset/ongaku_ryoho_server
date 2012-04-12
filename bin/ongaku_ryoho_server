@@ -1,22 +1,21 @@
 #!/usr/bin/env ruby
 require_relative '../lib/ongaku_ryoho_server.rb'
 
-#
-# Look for some of the Sinatra options and pass them along
-
-options = {}
+options = {
+  sinatra: {}
+}
 
 if ARGV.any?
   require 'optparse'
   OptionParser.new { |op|
-    op.on('-p port',   'set the port (default is 4567)')            { |val| options[:port] = Integer(val) }
-    op.on('-o addr',   'set the host (default is 0.0.0.0)')         { |val| options[:bind] = val }
-    op.on('-x',        'turn on the mutex lock (default is off)')   {       options[:lock] = true }
+    # sinatra
+    op.on('-p port',   'set the port (default is 4567)')            { |val| options[:sinatra][:port] = Integer(val) }
+    op.on('-o addr',   'set the host (default is 0.0.0.0)')         { |val| options[:sinatra][:bind] = val }
+    op.on('-x',        'turn on the mutex lock (default is off)')   {       options[:sinatra][:lock] = true }
+    
+    # other
+    op.on('-d',        'daemonize the server instance')             {       options[:daemonize] = true }
   }.parse!(ARGV.dup)
 end
-
-
-#
-# Run the server
 
 OngakuRyohoServer.run(options)
