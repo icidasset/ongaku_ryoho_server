@@ -45,6 +45,19 @@ module OngakuRyohoServer
     end
 
 
+    # crossdomain.xml
+    get '/crossdomain.xml' do
+      content_type :xml
+      %{
+        <?xml version="1.0"?>
+        <!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
+        <cross-domain-policy>
+           <allow-access-from domain="*" />
+        </cross-domain-policy>
+      }
+    end
+
+
     # everything else
     get %r{.+} do
       403
@@ -120,14 +133,14 @@ module OngakuRyohoServer
     #
     def process_music(music_collection, extra_properties = {})
       tracks = []
-      
+
       # loop over every track
       music_collection.each do |location|
         rpartition = location.rpartition('/')
         filename   = rpartition[2]
-        
+
         track = {}
-        
+
         case File.extname(filename)
         when '.mp3'
           Mp3Info.open(location) do |mp3|
@@ -139,23 +152,23 @@ module OngakuRyohoServer
               tracknr:  mp3.tag.tracknum,
               genres:   mp3.tag.genre_s
             }
-            
+
             tags.each do |key, value|
               tags[key] = 'Unknown' if value.nil? or (value.respond_to?(:empty) and value.empty?)
             end
-            
+
             tags.merge!({ filename: filename, location: location })
-            
+
             track = tags.clone
           end
         end
-        
+
         unless track.empty?
           track.merge!(extra_properties)
           tracks << track
         end
       end
-      
+
       # return all tracks
       return tracks
     end
