@@ -48,8 +48,7 @@ module OngakuRyohoServer
     # crossdomain.xml
     get '/crossdomain.xml' do
       content_type :xml
-      %{
-        <?xml version="1.0"?>
+      %{<?xml version="1.0"?>
         <!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
         <cross-domain-policy>
            <allow-access-from domain="*" />
