@@ -15,9 +15,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = OngakuRyohoServer::VERSION
 
-  gem.add_dependency 'json', '~> 1.6.6'
-  gem.add_dependency 'ruby-mp3info', '~> 0.7.1'
-  gem.add_dependency 'sinatra', '~> 1.3.2'
+  gem.add_dependency 'json', '~> 1.7.5'
+  gem.add_dependency 'taglib-ruby', '~> 0.5.2'
+  gem.add_dependency 'sinatra', '~> 1.3.3'
   gem.add_dependency 'puma'
 
   gem.add_development_dependency 'rake'
