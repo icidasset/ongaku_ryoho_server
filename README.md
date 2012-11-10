@@ -21,6 +21,7 @@ Go to a music directory and run the web server.
 ```bash
 cd ~/Music
 ongaku_ryoho_server start
+ongaku_ryoho_server stop (must be in the same directory)
 ```
 
 ### Options
