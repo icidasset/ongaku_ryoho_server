@@ -9,12 +9,15 @@ require "thin"
 gem_dir = File.dirname(__FILE__)
 current_directory_name = File.basename(Dir.pwd)
 
+# require library
+require "#{gem_dir}/../lib/ongaku_ryoho_server.rb"
+
 # files
 rackup_file = "#{gem_dir}/../lib/ongaku_ryoho_server/config.ru"
 log_file = "#{gem_dir}/../log/#{current_directory_name}.log"
 pid_file = "#{gem_dir}/../tmp/#{current_directory_name}.pid"
 
-# thin/sinatra arguments
+# thin arguments
 argv = ARGV
 argv << ["--tag", "Ongaku Ryoho Server"]
 argv << ["-R", rackup_file] unless ARGV.include?("-R")
@@ -27,6 +30,16 @@ argv << ["-p", "3000"] unless ARGV.include?("-p")
 update_collection = argv.include?("--update")
 argv.delete("--update") if update_collection
 
-# exec thin
+# thin cli
 thin_runner = Thin::Runner.new(argv.flatten)
+
+# keep options
+OngakuRyohoServer::OPTIONS = {
+  update_collection: update_collection,
+  thin: thin_runner.options
+}
+
+# exec thin
 thin_runner.run!
+
+
