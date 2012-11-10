@@ -1,12 +1,12 @@
 # Ongaku Ryoho Server
 
-A little Sinatra web server wrapped in a gem specifically for the [Ongaku Ryoho client](https://github.com/icidasset/ongaku_ryoho).
+A little Sinatra web server (with Thin) wrapped in a gem specifically for the Ongaku Ryoho client.
 
 ## How to use
 
 ### Requirements
 
-`Ruby 1.9.2`
+`Ruby 1.9.2 (or higher)`
 
 ### Installation
 
@@ -20,15 +20,16 @@ Go to a music directory and run the web server.
 
 ```bash
 cd ~/Music
-(rvmsudo) ongaku_ryoho_server (-p 80)
+ongaku_ryoho_server start
 ```
 
 ### Options
 
-Some Sinatra options, that is.
-
 ```
--p port    set the port (default is 4567)
--o addr    set the host (default is 0.0.0.0)
--x         turn on the mutex lock (default is off)
+-p           set the port (default: 3000)
+-d           daemonize
+
+--update     update the cached collection
+
++ all the other thin cli options
 ```

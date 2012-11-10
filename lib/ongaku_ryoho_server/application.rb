@@ -9,9 +9,9 @@ module OngakuRyohoServer
 
   class Application < Sinatra::Base
     set :environment, :production
-    set :server, :puma
+    set :server, :thin
 
-    FILE_FORMATS = %w{ mp3 mp4 ogg flac wav wma }
+    FILE_FORMATS = %w{ mp3 mp4 m4a ogg flac wav wma }
 
     # root
     get "/" do

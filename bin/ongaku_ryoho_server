@@ -1,29 +1,32 @@
 #!/usr/bin/env ruby
-require_relative "../lib/ongaku_ryoho_server.rb"
-
-#
-# Look for some of the Sinatra options and pass them along
-
-options = {}
-
-if ARGV.any?
-  require "optparse"
-  OptionParser.new { |op|
-    op.on("-p port",   "set the port (default is 4567)")            { |val| options[:port] = Integer(val) }
-    op.on("-o addr",   "set the host (default is 0.0.0.0)")         { |val| options[:bind] = val }
-    op.on("-x",        "turn on the mutex lock (default is off)")   {       options[:lock] = true }
-  }.parse!(ARGV.dup)
-end
+require "rubygems"
+require "thin"
 
 
 #
-# Build list
+# Thin CLI
 
-OngakuRyohoServer::List.save
-puts "Collection saved at #{OngakuRyohoServer::List.config_file_path}\n\n"
+gem_dir = File.dirname(__FILE__)
+current_directory_name = File.basename(Dir.pwd)
 
+# files
+rackup_file = "#{gem_dir}/../lib/ongaku_ryoho_server/config.ru"
+log_file = "#{gem_dir}/../log/#{current_directory_name}.log"
+pid_file = "#{gem_dir}/../tmp/#{current_directory_name}.pid"
 
-#
-# Run the server
+# thin/sinatra arguments
+argv = ARGV
+argv << ["--tag", "Ongaku Ryoho Server"]
+argv << ["-R", rackup_file] unless ARGV.include?("-R")
+argv << ["-P", pid_file] unless ARGV.include?("-P")
+argv << ["-l", log_file] unless ARGV.include?("-l")
+argv << ["-e", "production"] unless ARGV.include?("-e")
+argv << ["-p", "3000"] unless ARGV.include?("-p")
 
-OngakuRyohoServer.run(options)
+# special arguments
+update_collection = argv.include?("--update")
+argv.delete("--update") if update_collection
+
+# exec thin
+thin_runner = Thin::Runner.new(argv.flatten)
+thin_runner.run!
