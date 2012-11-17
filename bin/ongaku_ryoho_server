@@ -30,8 +30,8 @@ puma_cli = Puma::CLI.new(argv.flatten)
 
 # keep options
 OngakuRyohoServer::OPTIONS = {
-  update_collection: update_collection,
-  puma: puma_cli.instance_variable_get("@options")
+  :update_collection => update_collection,
+  :puma => puma_cli.instance_variable_get("@options")
 }
 
 # exec puma

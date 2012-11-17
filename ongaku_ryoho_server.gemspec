@@ -1,24 +1,26 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/ongaku_ryoho_server/version', __FILE__)
 
-Gem::Specification.new do |gem|
-  gem.authors       = ["Steven Vandevelde"]
-  gem.email         = ["icid.asset@gmail.com"]
-  gem.description   = %q{Serves music to Ongaku Ryoho clients}
-  gem.summary       = %q{Serves music to Ongaku Ryoho clients}
-  gem.homepage      = "https://github.com/icidasset/ongaku_ryoho_server"
+Gem::Specification.new do |s|
+  s.name = "ongaku_ryoho_server"
+  s.version = "0.3.2"
 
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "ongaku_ryoho_server"
-  gem.require_paths = ["lib"]
-  gem.version       = OngakuRyohoServer::VERSION
+  s.authors = ["Steven Vandevelde"]
+  s.email = ["icid.asset@gmail.com"]
+  s.description = "Serves music to Ongaku Ryoho clients"
+  s.summary = "Serves music to Ongaku Ryoho clients"
+  s.homepage = "https://github.com/icidasset/ongaku_ryoho_server"
 
-  gem.add_dependency 'json', '~> 1.7.5'
-  gem.add_dependency 'taglib-ruby', '~> 0.5.2'
-  gem.add_dependency 'sinatra', '~> 1.3.3'
-  gem.add_dependency 'puma', '~> 1.6.3'
+  s.files = `git ls-files`.split($\)
+  s.executables = s.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  s.test_files = s.files.grep(%r{^(test|spec|features)/})
 
-  gem.add_development_dependency 'rake'
+  s.require_paths = ["lib"]
+  s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
+
+  s.add_dependency "json", "~> 1.7.5"
+  s.add_dependency "taglib-ruby", "~> 0.5.2"
+  s.add_dependency "sinatra", "~> 1.3.3"
+  s.add_dependency "puma", "~> 1.6.3"
+
+  s.add_development_dependency "rake"
 end

@@ -1,3 +1,8 @@
+=== 0.3.2 / 2012-11-17
+
+* ruby 1.8.7 support
+
+
 === 0.3.1 / 2012-11-16
 
 * use puma instead of thin (better streaming support, daemonizing coming soon)

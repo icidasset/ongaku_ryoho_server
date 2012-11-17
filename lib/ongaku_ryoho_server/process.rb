@@ -80,12 +80,12 @@ module OngakuRyohoServer
           tag = fileref.tag
 
           tags = {
-            title:   tag.title,
-            artist:  tag.artist,
-            album:   tag.album,
-            year:    tag.year,
-            track:   tag.track,
-            genre:   tag.genre
+            :title   => tag.title,
+            :artist  => tag.artist,
+            :album   => tag.album,
+            :year    => tag.year,
+            :track   => tag.track,
+            :genre   => tag.genre
           }
 
           tags.each do |key, value|
