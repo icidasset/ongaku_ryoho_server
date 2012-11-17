@@ -1,3 +1,5 @@
+require "taglib"
+
 module OngakuRyohoServer
   #
   # { Process }
