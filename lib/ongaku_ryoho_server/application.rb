@@ -1,3 +1,5 @@
+require "sinatra/base"
+
 module OngakuRyohoServer
   #
   # { Application }
@@ -31,6 +33,7 @@ module OngakuRyohoServer
 
     # music file
     get %r{.(#{FILE_FORMATS.join("|")})$}i do
+      require "uri"
       requested_item = URI.unescape(request.path_info[1..-1])
       File.exists?(requested_item) ? send_file(requested_item) : 404
     end

@@ -43,12 +43,12 @@ module OngakuRyohoServer
       new_files = file_list_from_current_directory - file_list
 
       new_tracks = OngakuRyohoServer::Process.files(
-        new_files, { last_modified: Time.now }
+        new_files, { :last_modified => Time.now }
       )
 
       return {
-        missing_files: missing_files,
-        new_tracks: new_tracks
+        :missing_files => missing_files,
+        :new_tracks => new_tracks
       }
     end
 
@@ -72,7 +72,7 @@ module OngakuRyohoServer
       # loop over every track
       file_list.each do |location|
         rpartition = location.rpartition("/")
-        filename   = rpartition[2]
+        filename = rpartition[2]
 
         track = {}
 
@@ -80,19 +80,19 @@ module OngakuRyohoServer
           tag = fileref.tag
 
           tags = {
-            :title   => tag.title,
-            :artist  => tag.artist,
-            :album   => tag.album,
-            :year    => tag.year,
-            :track   => tag.track,
-            :genre   => tag.genre
+            :title => tag.title,
+            :artist => tag.artist,
+            :album => tag.album,
+            :year => tag.year,
+            :track => tag.track,
+            :genre => tag.genre
           }
 
           tags.each do |key, value|
             tags[key] = "Unknown" if value.nil? or (value.respond_to?(:empty) and value.empty?)
           end
 
-          tags.merge!({ filename: filename, location: location })
+          tags.merge!({ :filename => filename, :location => location })
 
           track = tags.clone
         end

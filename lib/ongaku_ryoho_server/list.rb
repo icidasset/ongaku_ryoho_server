@@ -17,6 +17,7 @@ module OngakuRyohoServer
     # => Creates a digest from the path of the current directory
     #
     def self.get_digest
+      require "digest/sha1"
       digested_path = Digest::SHA1.hexdigest(Dir.pwd)
     end
 
