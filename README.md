@@ -1,6 +1,6 @@
 # Ongaku Ryoho Server
 
-A little Sinatra web server (with Thin) wrapped in a gem specifically for the Ongaku Ryoho client.
+A little Sinatra web server (with Puma) wrapped in a gem specifically for the Ongaku Ryoho client.
 
 ## How to use
 
@@ -27,10 +27,10 @@ ongaku_ryoho_server stop (must be in the same directory)
 ### Options
 
 ```
--p           set the port (default: 3000)
+-p           set the port (default: 7000)
 -d           daemonize
 
 --update     update the cached collection
 
-+ all the other thin cli options
++ all the other puma cli options
 ```

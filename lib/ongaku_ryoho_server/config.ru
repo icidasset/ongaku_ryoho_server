@@ -14,4 +14,4 @@ end
 #
 # Run the application
 
-run OngakuRyohoServer::Application.new(options[:thin])
+run OngakuRyohoServer::Application.new(options[:puma])

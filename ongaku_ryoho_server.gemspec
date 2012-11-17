@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'json', '~> 1.7.5'
   gem.add_dependency 'taglib-ruby', '~> 0.5.2'
   gem.add_dependency 'sinatra', '~> 1.3.3'
-  gem.add_dependency 'thin', '~> 1.5.0'
+  gem.add_dependency 'puma', '~> 1.6.3'
 
   gem.add_development_dependency 'rake'
 end

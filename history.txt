@@ -1,3 +1,9 @@
+=== 0.3.1 / 2012-11-16
+
+* use puma instead of thin (better streaming support, daemonizing coming soon)
+* removed the unnecessary "/available" route
+
+
 === 0.3.0 / 2012-11-10
 
 * use thin cli (ability to daemonize)

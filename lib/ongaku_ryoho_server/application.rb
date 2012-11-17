@@ -9,7 +9,6 @@ module OngakuRyohoServer
 
   class Application < Sinatra::Base
     set :environment, :production
-    set :server, :thin
 
     FILE_FORMATS = %w{ mp3 mp4 m4a ogg flac wav wma }
 
@@ -18,12 +17,6 @@ module OngakuRyohoServer
       content_type :json
 
       OngakuRyohoServer::List.get
-    end
-
-
-    # availability
-    get "/available?" do
-      "As it happens, I am."
     end
 
 

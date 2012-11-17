@@ -1,45 +1,38 @@
 #!/usr/bin/env ruby
 require "rubygems"
-require "thin"
+require "puma/cli"
 
-
-#
-# Thin CLI
 
 gem_dir = File.dirname(__FILE__)
-current_directory_name = File.basename(Dir.pwd)
 
 # require library
 require "#{gem_dir}/../lib/ongaku_ryoho_server.rb"
 
 # files
 rackup_file = "#{gem_dir}/../lib/ongaku_ryoho_server/config.ru"
-log_file = "#{gem_dir}/../log/#{current_directory_name}.log"
-pid_file = "#{gem_dir}/../tmp/#{current_directory_name}.pid"
+pid_file = "#{gem_dir}/../tmp/#{OngakuRyohoServer::List.get_digest}.pid"
 
-# thin arguments
+# puma arguments
 argv = ARGV
-argv << ["--tag", "Ongaku Ryoho Server"]
-argv << ["-R", rackup_file] unless ARGV.include?("-R")
-argv << ["-P", pid_file] unless ARGV.include?("-P")
-argv << ["-l", log_file] unless ARGV.include?("-l")
+argv << ["--pidfile", pid_file] unless ARGV.include?("--pidfile")
 argv << ["-e", "production"] unless ARGV.include?("-e")
-argv << ["-p", "3000"] unless ARGV.include?("-p")
+argv << ["-p", "7000"] unless ARGV.include?("-p")
+
+# rackup file
+argv << rackup_file
 
 # special arguments
 update_collection = argv.include?("--update")
 argv.delete("--update") if update_collection
 
-# thin cli
-thin_runner = Thin::Runner.new(argv.flatten)
+# puma cli
+puma_cli = Puma::CLI.new(argv.flatten)
 
 # keep options
 OngakuRyohoServer::OPTIONS = {
   update_collection: update_collection,
-  thin: thin_runner.options
+  puma: puma_cli.instance_variable_get("@options")
 }
 
-# exec thin
-thin_runner.run!
-
-
+# exec puma
+puma_cli.run
