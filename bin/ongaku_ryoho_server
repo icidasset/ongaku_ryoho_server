@@ -14,7 +14,6 @@ pid_file = "#{gem_dir}/../tmp/#{OngakuRyohoServer::List.get_digest}.pid"
 
 # puma arguments
 argv = ARGV
-argv << ["--pidfile", pid_file] unless ARGV.include?("--pidfile")
 argv << ["-e", "production"] unless ARGV.include?("-e")
 argv << ["-p", "7000"] unless ARGV.include?("-p")
 
