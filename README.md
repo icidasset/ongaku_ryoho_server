@@ -6,7 +6,7 @@ A little Sinatra web server (with Puma) wrapped in a gem specifically for the On
 
 ### Requirements
 
-`Ruby 1.9.2 (or higher)`
+`Ruby 1.8.7 (or higher)`
 
 ### Installation
 
@@ -20,15 +20,16 @@ Go to a music directory and run the web server.
 
 ```bash
 cd ~/Music
-ongaku_ryoho_server start
-ongaku_ryoho_server stop (must be in the same directory)
+ongaku_ryoho_server
 ```
+
+or create a [launch agent](https://gist.github.com/4106353) (tested on OSX Mountain Lion)
+
 
 ### Options
 
 ```
 -p           set the port (default: 7000)
--d           daemonize
 
 --update     update the cached collection
 
