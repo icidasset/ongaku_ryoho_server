@@ -98,7 +98,7 @@ module OngakuRyohoServer
           tags.merge!({ :filename => filename, :location => location })
 
           tags.each do |k, v|
-            tags[k] = OngakuRyohoServer::Process.encode_string(v)
+            tags[k] = OngakuRyohoServer::Process.encode_string(v) if v.is_a? String
           end
 
           track = tags.clone
