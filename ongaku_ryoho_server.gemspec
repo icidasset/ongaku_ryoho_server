@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ongaku_ryoho_server"
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.authors = ["Steven Vandevelde"]
   s.email = ["icid.asset@gmail.com"]
