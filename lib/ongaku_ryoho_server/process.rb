@@ -99,6 +99,11 @@ module OngakuRyohoServer
           end
 
           tags.merge!({ :filename => filename, :location => location })
+
+          tags.each do |k, v|
+            tags[k] = OngakuRyohoServer::Process.encode_string(v) if v.is_a? String
+          end
+
           track = tags.clone
         end
 
@@ -110,6 +115,15 @@ module OngakuRyohoServer
 
       # return all tracks
       return tracks
+    end
+
+
+    #
+    # Helpers
+    #
+    def self.encode_string(string)
+      new_string = string.force_encoding("cp1252")
+      new_string.encode("UTF-8", { :invalid => :replace, :undef => :replace, :replace => "?" })
     end
 
   end
