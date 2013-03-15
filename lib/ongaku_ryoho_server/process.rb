@@ -39,8 +39,9 @@ module OngakuRyohoServer
     #   object containing missing_files and new_tracks array
     #
     def self.check_files(file_list)
-      file_list = JSON.parse(file_list)
-      file_list_from_current_directory = OngakuRyohoServer::Process.directory
+      file_list = begin JSON.parse(file_list) rescue [] end
+      file_list_from_current_directory = JSON.parse(OngakuRyohoServer::List.get)
+      file_list_from_current_directory.map! { |obj| obj["location"] }
 
       missing_files = file_list - file_list_from_current_directory
       new_files = file_list_from_current_directory - file_list
@@ -77,6 +78,8 @@ module OngakuRyohoServer
         rpartition = location.rpartition("/")
         filename = rpartition[2]
 
+        next unless File.exist?(location)
+
         track = {}
 
         TagLib::FileRef.open(location) do |fileref|
@@ -96,7 +99,6 @@ module OngakuRyohoServer
           end
 
           tags.merge!({ :filename => filename, :location => location })
-
           track = tags.clone
         end
 

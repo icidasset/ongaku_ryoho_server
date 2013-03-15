@@ -39,7 +39,7 @@ module OngakuRyohoServer
     #
     def self.get
       path = self.config_file_path
-      File.open(path, "r") if File.file?(path)
+      File.open(path, "r").read if File.file?(path)
     end
 
 

@@ -1,5 +1,10 @@
 options = OngakuRyohoServer::OPTIONS
 
+#
+# Middleware
+
+use Rack::Deflater
+
 
 #
 # Build file list (only if needed or request)
