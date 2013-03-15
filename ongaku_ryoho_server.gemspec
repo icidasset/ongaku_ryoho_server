@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "json", "~> 1.7.7"
   s.add_dependency "taglib-ruby", "~> 0.5.2"
-  s.add_dependency "sinatra", "~> 1.3.6"
+  s.add_dependency "sinatra", "1.3.5"
   s.add_dependency "puma", "~> 1.6.3"
 
   s.add_development_dependency "rake"
