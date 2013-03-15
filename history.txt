@@ -2,6 +2,7 @@
 
 * refactor 'check_files' method
 * add gzip compression
+* only force encoding when that method exists
 
 
 === 0.3.4 / 2013-02-05
