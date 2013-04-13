@@ -38,8 +38,10 @@ module OngakuRyohoServer
     # => Get the list for the current directory
     #
     def self.get
-      path = self.config_file_path
-      File.open(path, "r").read if File.file?(path)
+      if File.file?(self.config_file_path)
+        file_contents = File.open(path, "r").read
+        OngakuRyohoServer::Process.encode_string(file_contents, "")
+      end
     end
 
 
