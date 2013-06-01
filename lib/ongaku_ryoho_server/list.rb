@@ -54,7 +54,7 @@ module OngakuRyohoServer
     def self.save
       path = self.config_file_path
       file_list = OngakuRyohoServer::Process.directory
-      collection = OngakuRyohoServer::Process.files(file_list).to_json
+      collection = Oj.dump(OngakuRyohoServer::Process.files(file_list))
 
       # make path
       FileUtils.mkpath(CONFIG_PATH)

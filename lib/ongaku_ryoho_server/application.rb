@@ -16,18 +16,36 @@ module OngakuRyohoServer
 
     # root
     get "/" do
-      content_type :json
+      callback = params[:callback]
+      json = OngakuRyohoServer::List.get
 
-      OngakuRyohoServer::List.get
+      if callback and !callback.empty?
+        content_type :js
+        response = "#{callback}(#{json})"
+      else
+        content_type :json
+        response = json
+      end
+
+      response
     end
 
 
     # compare filelists
     post "/check" do
-      content_type :json
-
       collection = params[:file_list]
-      OngakuRyohoServer::Process.check_files(collection).to_json
+      callback = params[:callback]
+      json = Oj.dump(OngakuRyohoServer::Process.check_files(collection))
+
+      if callback and !callback.empty?
+        content_type :js
+        response = "#{callback}(#{json})"
+      else
+        content_type :json
+        response = json
+      end
+
+      response
     end
 
 
