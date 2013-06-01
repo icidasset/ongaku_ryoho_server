@@ -39,8 +39,8 @@ module OngakuRyohoServer
     #   object containing missing_files and new_tracks array
     #
     def self.check_files(file_list)
-      file_list = begin JSON.parse(file_list) rescue [] end
-      file_list_from_current_directory = JSON.parse(OngakuRyohoServer::List.get)
+      file_list = begin Oj::Doc.parse(file_list) rescue [] end
+      file_list_from_current_directory = Oj::Doc.parse(OngakuRyohoServer::List.get)
       file_list_from_current_directory.map! { |obj| obj["location"] }
 
       missing_files = file_list - file_list_from_current_directory
