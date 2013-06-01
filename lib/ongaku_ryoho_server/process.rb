@@ -1,5 +1,5 @@
 require "taglib"
-require "json"
+require "oj"
 
 module OngakuRyohoServer
   #
