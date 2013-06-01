@@ -1,12 +1,13 @@
 # Ongaku Ryoho Server
 
-A little Sinatra web server (with Puma) wrapped in a gem specifically for the Ongaku Ryoho client.
+A little web server (with Puma) wrapped in a gem specifically for the Ongaku Ryoho client.
 
 ## How to use
 
 ### Requirements
 
-`Ruby 1.8.7 (or higher)`
+- taglib
+- ruby 1.8.7 (or higher)
 
 ### Installation
 
@@ -34,4 +35,7 @@ or create a [launch agent](https://gist.github.com/4106353) (tested on OSX Mount
 --update     update the cached collection
 
 + all the other puma cli options
+-> https://github.com/puma/puma/blob/v2.0.1/lib/puma/cli.rb#L185
+
+-d           daemonize
 ```
