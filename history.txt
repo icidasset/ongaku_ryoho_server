@@ -1,3 +1,9 @@
+=== 0.5.0 / 2013-07-02
+
+* tests
+* refactored code
+
+
 === 0.4.0 / 2013-07-01
 
 * jsonp support

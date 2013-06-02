@@ -31,9 +31,12 @@ module OngakuRyohoServer
 
     # compare filelists
     post "/check" do
-      collection = params[:file_list]
       callback = params[:callback]
-      json = Oj.dump(OngakuRyohoServer::Process.check_files(collection))
+      file_list = params[:file_list]
+      other_file_list = params[:other_file_list]
+
+      missing_and_new = OngakuRyohoServer::Process.check_files(file_list, other_file_list)
+      json = Oj.dump(missing_and_new)
 
       if callback and !callback.empty?
         content_type :js
@@ -49,7 +52,6 @@ module OngakuRyohoServer
 
     # music file
     get %r{.(#{FILE_FORMATS.join("|")})$}i do
-      require "uri"
       requested_item = URI.unescape(request.path_info[1..-1])
       File.exists?(requested_item) ? send_file(requested_item) : 404
     end

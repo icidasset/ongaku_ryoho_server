@@ -26,27 +26,38 @@ module OngakuRyohoServer
     #
     # Check files
     #
-    # => compares a given file list to the file list from the current directory
+    # => compares a given file list to another file list.
+    #    fallback is file list from the current directory.
     #    show which files are missing and scan the ones that are new
     #
     # [params]
-    #   file_list
+    #   file_list : array of hashes with a :location key
+    #   other_file_list
     #
     # [output]
     #   object containing missing_files and new_tracks array
     #
-    def self.check_files(file_list)
-      file_list = begin Oj.load(file_list) rescue [] end
-      file_list_from_current_directory = Oj.load(OngakuRyohoServer::List.get)
-      file_list_from_current_directory.map! { |obj| obj["location"] }
+    def self.check_files(file_list, other_file_list=nil)
+      file_list = Oj.load(file_list || "[]")
 
-      missing_files = file_list - file_list_from_current_directory
-      new_files = file_list_from_current_directory - file_list
+      # other file list
+      if other_file_list
+        other_file_list = Oj.load(other_file_list)
+      else
+        other_file_list = Oj.load(OngakuRyohoServer::List.get)
+        other_file_list.map! { |obj| obj[:location] }
+      end
 
+      # determine which files are missing and which are new
+      missing_files = file_list - other_file_list
+      new_files = other_file_list - file_list
+
+      # process new files
       new_tracks = OngakuRyohoServer::Process.files(
         new_files, { :last_modified => Time.now }
       )
 
+      # return missing and new tracks
       return {
         :missing_files => missing_files,
         :new_tracks => new_tracks

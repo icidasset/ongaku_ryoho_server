@@ -1,6 +1,6 @@
 ENV["RACK_ENV"] = "test"
 
-require_relative "../lib/ongaku_ryoho_server"
+require File.expand_path("../../lib/ongaku_ryoho_server", __FILE__)
 require "minitest/autorun"
 require "rack/test"
 
