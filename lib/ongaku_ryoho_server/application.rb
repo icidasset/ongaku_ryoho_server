@@ -1,5 +1,3 @@
-require "sinatra/base"
-
 module OngakuRyohoServer
   #
   # { Application }
