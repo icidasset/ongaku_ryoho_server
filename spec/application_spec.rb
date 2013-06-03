@@ -52,6 +52,18 @@ describe "Application" do
       OngakuRyohoServer::List.save
     end
 
+    it "should return json" do
+      post "/check"
+      last_response.must_be :ok?
+      last_response.content_type.must_equal "application/json;charset=utf-8"
+    end
+
+    it "should return jsonp" do
+      post "/check", :callback => "test"
+      last_response.must_be :ok?
+      last_response.content_type.must_equal "application/javascript;charset=utf-8"
+    end
+
     it "should have 2 parent keys" do
       post "/check"
       json = Oj.load(last_response.body)
