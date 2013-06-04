@@ -1,6 +1,7 @@
 === 0.5.1 / 2013-07-04
 
 * enable cors
+* fixed utf-8 encoding issue
 
 
 === 0.5.0 / 2013-07-02
