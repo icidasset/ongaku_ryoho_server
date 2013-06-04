@@ -131,7 +131,7 @@ module OngakuRyohoServer
     #
     def self.encode_string(string, replace_value="?")
       return string unless string.respond_to?(:force_encoding)
-      new_string = string.force_encoding("cp1252")
+      new_string = string.force_encoding(::Encoding::UTF_8)
       new_string.encode("UTF-8", { :invalid => :replace, :undef => :replace, :replace => replace_value })
     end
 
