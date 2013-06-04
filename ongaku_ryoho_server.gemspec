@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = "ongaku_ryoho_server"
-  s.version       = "0.5.0"
+  s.version       = "0.5.1"
 
   s.authors       = ["Steven Vandevelde"]
   s.email         = ["icid.asset@gmail.com"]
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "oj", "~> 2.0.14"
   s.add_runtime_dependency "taglib-ruby", "~> 0.6.0"
   s.add_runtime_dependency "sinatra", "~> 1.4.2"
+  s.add_runtime_dependency "sinatra-cross_origin", "~> 0.2.0"
   s.add_runtime_dependency "puma", "~> 2.0.1"
 
   s.add_development_dependency "rake", "~> 10.0.4"

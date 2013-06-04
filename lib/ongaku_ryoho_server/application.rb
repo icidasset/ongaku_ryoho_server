@@ -10,6 +10,14 @@ module OngakuRyohoServer
   class Application < Sinatra::Base
     set :environment, :production
 
+    # CORS
+    register Sinatra::CrossOrigin
+
+    configure do
+      enable :cross_origin
+    end
+
+    # allowed file formats
     FILE_FORMATS = %w{ mp3 mp4 m4a ogg flac wav wma }
 
     # root

@@ -22,6 +22,12 @@ describe "Application" do
       last_response.content_type.must_equal "application/javascript;charset=utf-8"
     end
 
+    it "should work cross domain" do
+      get "/", {}, { "HTTP_ORIGIN" => "http://localhost" }
+      last_response.must_be :ok?
+      last_response.headers["Access-Control-Allow-Origin"].must_equal "http://localhost"
+    end
+
     it "should have 3 items" do
       get "/"
       json = Oj.load(last_response.body)
@@ -62,6 +68,12 @@ describe "Application" do
       post "/check", :callback => "test"
       last_response.must_be :ok?
       last_response.content_type.must_equal "application/javascript;charset=utf-8"
+    end
+
+    it "should work cross domain" do
+      post "/check", {}, { "HTTP_ORIGIN" => "http://localhost" }
+      last_response.must_be :ok?
+      last_response.headers["Access-Control-Allow-Origin"].must_equal "http://localhost"
     end
 
     it "should have 2 parent keys" do
