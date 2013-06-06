@@ -40,12 +40,12 @@ describe "Application" do
       json = Oj.load(last_response.body)
       first_item = json.first
 
-      first_item.has_key?(:title).must_equal true
-      first_item.has_key?(:artist).must_equal true
-      first_item.has_key?(:album).must_equal true
-      first_item.has_key?(:year).must_equal true
-      first_item.has_key?(:track).must_equal true
-      first_item.has_key?(:genre).must_equal true
+      first_item.has_key?("title").must_equal true
+      first_item.has_key?("artist").must_equal true
+      first_item.has_key?("album").must_equal true
+      first_item.has_key?("year").must_equal true
+      first_item.has_key?("track").must_equal true
+      first_item.has_key?("genre").must_equal true
     end
   end
 
@@ -79,33 +79,33 @@ describe "Application" do
     it "should have 2 parent keys" do
       post "/check"
       json = Oj.load(last_response.body)
-      json[:missing_files].must_be_kind_of Array
-      json[:new_tracks].must_be_kind_of Array
+      json["missing_files"].must_be_kind_of Array
+      json["new_tracks"].must_be_kind_of Array
     end
 
     it "should have 3 new tracks when given empty file list" do
       post "/check", :file_list => Oj.dump([])
       json = Oj.load(last_response.body)
-      json[:new_tracks].length.must_equal 3
+      json["new_tracks"].length.must_equal 3
     end
 
     it "should have 0 new tracks when given same file list" do
       file_list = [
-        { :location => "spec/data/a.mp3" },
-        { :location => "spec/data/b.mp3" },
-        { :location => "spec/data/c.mp3" }
+        { "location" => "spec/data/a.mp3" },
+        { "location" => "spec/data/b.mp3" },
+        { "location" => "spec/data/c.mp3" }
       ]
 
       post "/check", :file_list => Oj.dump(file_list)
       json = Oj.load(last_response.body)
-      json[:new_tracks].length.must_equal 3
+      json["new_tracks"].length.must_equal 3
     end
 
     it "should have 3 missing files" do
       file_list = [
-        { :location => "spec/data/a.mp3" },
-        { :location => "spec/data/b.mp3" },
-        { :location => "spec/data/c.mp3" }
+        { "location" => "spec/data/a.mp3" },
+        { "location" => "spec/data/b.mp3" },
+        { "location" => "spec/data/c.mp3" }
       ]
 
       post "/check",
@@ -113,7 +113,7 @@ describe "Application" do
         :other_file_list => Oj.dump([])
 
       json = Oj.load(last_response.body)
-      json[:missing_files].length.must_equal 3
+      json["missing_files"].length.must_equal 3
     end
   end
 

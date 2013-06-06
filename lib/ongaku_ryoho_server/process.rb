@@ -45,7 +45,7 @@ module OngakuRyohoServer
         other_file_list = Oj.load(other_file_list)
       else
         other_file_list = Oj.load(OngakuRyohoServer::List.get)
-        other_file_list.map! { |obj| obj[:location] }
+        other_file_list.map! { |obj| obj["location"] }
       end
 
       # determine which files are missing and which are new
@@ -53,14 +53,12 @@ module OngakuRyohoServer
       new_files = other_file_list - file_list
 
       # process new files
-      new_tracks = OngakuRyohoServer::Process.files(
-        new_files, { :last_modified => Time.now }
-      )
+      new_tracks = OngakuRyohoServer::Process.files(new_files)
 
       # return missing and new tracks
       return {
-        :missing_files => missing_files,
-        :new_tracks => new_tracks
+        "missing_files" => missing_files,
+        "new_tracks" => new_tracks
       }
     end
 
@@ -94,19 +92,19 @@ module OngakuRyohoServer
           tag = fileref.tag
 
           tags = {
-            :title => tag.title,
-            :artist => tag.artist,
-            :album => tag.album,
-            :year => tag.year,
-            :track => tag.track,
-            :genre => tag.genre
+            "title" => tag.title,
+            "artist" => tag.artist,
+            "album" => tag.album,
+            "year" => tag.year,
+            "track" => tag.track,
+            "genre" => tag.genre
           }
 
           tags.each do |key, value|
             tags[key] = "Unknown" if value.nil? or (value.respond_to?(:empty) and value.empty?)
           end
 
-          tags.merge!({ :filename => filename, :location => location })
+          tags.merge!({ "filename" => filename, "location" => location })
 
           tags.each do |k, v|
             tags[k] = OngakuRyohoServer::Process.encode_string(v) if v.is_a? String

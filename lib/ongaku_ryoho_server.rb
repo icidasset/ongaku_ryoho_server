@@ -7,9 +7,9 @@ require "sinatra/cross_origin"
 require "uri"
 require "digest/sha1"
 
-require "ongaku_ryoho_server/process"
-require "ongaku_ryoho_server/list"
-require "ongaku_ryoho_server/application"
+require "#{File.dirname(__FILE__)}/ongaku_ryoho_server/process"
+require "#{File.dirname(__FILE__)}/ongaku_ryoho_server/list"
+require "#{File.dirname(__FILE__)}/ongaku_ryoho_server/application"
 
 
 module OngakuRyohoServer
