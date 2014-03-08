@@ -1,3 +1,8 @@
+=== 0.5.3 / 2014-03-08
+
+* update dependencies
+
+
 === 0.5.2 / 2013-07-06
 
 * use strings as keys for json, instead of symbols

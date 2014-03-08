@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = "ongaku_ryoho_server"
-  s.version       = "0.5.2"
+  s.version       = "0.5.3"
 
   s.authors       = ["Steven Vandevelde"]
   s.email         = ["icid.asset@gmail.com"]
@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
 
-  s.add_runtime_dependency "oj", "~> 2.0.14"
+  s.add_runtime_dependency "oj", "~> 2.5.5"
   s.add_runtime_dependency "taglib-ruby", "~> 0.6.0"
-  s.add_runtime_dependency "sinatra", "~> 1.4.2"
-  s.add_runtime_dependency "sinatra-cross_origin", "~> 0.2.0"
-  s.add_runtime_dependency "puma", "~> 2.0.1"
+  s.add_runtime_dependency "sinatra", "~> 1.4.4"
+  s.add_runtime_dependency "sinatra-cross_origin", "~> 0.3.2"
+  s.add_runtime_dependency "puma", "~> 2.8.1"
 
-  s.add_development_dependency "rake", "~> 10.0.4"
+  s.add_development_dependency "rake", "~> 10.1.1"
   s.add_development_dependency "rack-test", "~> 0.6.2"
-  s.add_development_dependency "minitest", "~> 5.0.3"
+  s.add_development_dependency "minitest", "~> 5.3.0"
 end
