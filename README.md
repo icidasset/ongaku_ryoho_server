@@ -35,7 +35,7 @@ or create a [launch agent](https://gist.github.com/4106353) (tested on OSX Mount
 --update     update the cached collection
 
 + all the other puma cli options
--> https://github.com/puma/puma/blob/v2.0.1/lib/puma/cli.rb#L185
+-> https://github.com/puma/puma/blob/v2.8.1/lib/puma/cli.rb#L93
 
 -d           daemonize
 ```
